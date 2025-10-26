@@ -1,0 +1,48 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Maven Start Up Batch script
+#
+# Required ENV vars:
+# ------------------
+#   JAVA_HOME - location of a JDK home dir
+#
+# Optional ENV vars
+# -----------------
+#   MAVEN_OPTS - parameters passed to the Java VM when running Maven
+#     e.g. to debug Maven itself, use
+#       set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+#   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
+# ----------------------------------------------------------------------------
+
+if [ -z "$MAVEN_SKIP_RC" ] ; then
+
+  if [ -f /usr/local/etc/mavenrc ] ; then
+    . /usr/local/etc/mavenrc
+  fi
+
+  if [ -f "$HOME/.mavenrc" ] ; then
+    . "$HOME/.mavenrc"
+  fi
+
+fi
+
+BASE_DIR=$(dirname "$0")
+BASE_DIR=$(cd "$BASE_DIR"; pwd)
+WRAPPER_JAR="$BASE_DIR/.mvn/wrapper/maven-wrapper.jar"
+WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
+
+if command -v java >/dev/null 2>&1; then
+  JAVA_EXEC="java"
+else
+  if [ -n "$JAVA_HOME" ] ; then
+    JAVA_EXEC="$JAVA_HOME/bin/java"
+  elif [ -x "/usr/libexec/java_home" ] ; then
+    JAVA_HOME=$(/usr/libexec/java_home)
+    JAVA_EXEC="$JAVA_HOME/bin/java"
+  else
+    echo "Cannot find Java. Please set JAVA_HOME." >&2
+    exit 1
+  fi
+fi
+
+exec "$JAVA_EXEC" $MAVEN_OPTS -classpath "$WRAPPER_JAR" $WRAPPER_LAUNCHER "$@"
